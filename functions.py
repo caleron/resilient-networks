@@ -21,7 +21,7 @@ def clustering_distribution(g: nx.Graph):
     # computes clustering coefficient for each node
     # result is a map: node -> coefficient
     clustering: dict = nx.clustering(g)
-    print(f"clustering: {str(clustering)}")
+    print(f"TODO clustering: {str(clustering)}")
 
 
 # https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.average_shortest_path_length.html
@@ -43,3 +43,19 @@ def diameter(g: nx.Graph):
 # https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.approximation.connectivity.node_connectivity.html
 def connectivity(g: nx.Graph):
     print(f"Connectivity: {nx.node_connectivity(g)}")
+
+
+def power_law_properties(g: nx.Graph):
+    print("TODO")
+
+
+def cohesiveness_distribution(g: nx.Graph):
+    print("TODO")
+
+
+def edge_persistence_greedy_attack(g: nx.Graph):
+    print("TODO")
+
+
+def resilience_against_attacks(g: nx.Graph):
+    print("TODO")

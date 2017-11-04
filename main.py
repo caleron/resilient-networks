@@ -21,6 +21,7 @@ import functions
 def analyze_net(g: nx.Graph, name: str):
     print(f"Analyzing {name}")
     # https://networkx.github.io/documentation/stable/reference/classes/generated/networkx.Graph.to_undirected.html
+    # undirected graphs are better analyzable
     g = nx.to_undirected(g)
 
     # https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_connected.html
@@ -32,6 +33,10 @@ def analyze_net(g: nx.Graph, name: str):
     functions.clustering_distribution(g)
     functions.diameter(g)
     functions.connectivity(g)
+    functions.power_law_properties(g)
+    functions.cohesiveness_distribution(g)
+    functions.edge_persistence_greedy_attack(g)
+    functions.resilience_against_attacks(g)
 
     print(f"Done analyzing {name}")
 
