@@ -77,8 +77,30 @@ def facebook_0():
     analyze_net(g, name)
 
 
+# tests the graph from slide 40 of the graph chapter
+#          1 --- 2
+#         /  \  / \
+#  8 --- 3 -- 4 -- 5
+#         \  / \  /
+#          6 --- 7
+# (8 is optional)
+def test_graph():
+    g = nx.Graph()
+    g.add_edges_from([
+        (1, 2),
+        (1, 3), (1, 4), (2, 4), (2, 5),
+        (3, 4), (4, 5),
+        (3, 6), (4, 6), (4, 7), (5, 7),
+        (6, 7)
+    ])
+    g.add_edge(3, 8)
+    functions.cohesiveness_distribution(g)
+    # analyze_net(g, "test")
+
+
+test_graph()
 # facebook_0()
 # zero_access()
 # facebook_combined()
 # sality()
-gnutella()
+# gnutella()

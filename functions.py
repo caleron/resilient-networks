@@ -45,12 +45,27 @@ def connectivity(g: nx.Graph):
     print(f"Connectivity: {nx.node_connectivity(g)}")
 
 
+# uses node_connectivity function as above
+# node_connectivity is the number of nodes that must be removed to disconnect the graph
+def cohesiveness(g: nx.Graph, v):
+    before = nx.node_connectivity(g)
+    copy = g.copy()
+    copy.remove_node(v)
+    after = nx.node_connectivity(copy)
+    # print(f"before: {before} after: {after}, cohesiveness of node {v}: {before - after}")
+    return before - after
+
+
 def power_law_properties(g: nx.Graph):
     print("TODO")
 
 
 def cohesiveness_distribution(g: nx.Graph):
-    print("TODO")
+    arr = dict()
+    for node in g.nodes:
+        arr[node] = cohesiveness(g, node)
+
+    print(f"Cohesiveness distribution: {str(arr)}")
 
 
 def edge_persistence_greedy_attack(g: nx.Graph):
