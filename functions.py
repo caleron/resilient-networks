@@ -1,5 +1,6 @@
 import networkx as nx
 import random
+import matplotlib.pyplot as plt
 
 
 def basic_numbers(g: nx.Graph):
@@ -58,7 +59,22 @@ def cohesiveness(g: nx.Graph, v):
 
 
 def power_law_properties(g: nx.Graph):
-    print("TODO")
+    degree_sequence = sorted(nx.degree(g), reverse=True)
+    dmax = max(degree_sequence)
+
+    plt.loglog(degree_sequence)
+    plt.title("Degree plot")
+    plt.ylabel("Degree")
+    plt.xlabel("rank")
+
+    Gcc = sorted(nx.connected_component_subgraphs(g), key=len, reverse=True)[0]
+
+    pos = nx.spring_layout(Gcc)
+    plt.axis('off')
+    nx.draw_networkx_nodes(Gcc, pos, node_size=200)
+    nx.draw_networkx_edges(Gcc, pos, alpha=0.5)
+
+    plt.show()
 
 
 def cohesiveness_distribution(g: nx.Graph):
