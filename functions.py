@@ -1,4 +1,5 @@
 import networkx as nx
+import random
 
 
 def basic_numbers(g: nx.Graph):
@@ -106,5 +107,61 @@ def edge_persistence_greedy_attack(g: nx.Graph):
     print(f"TODO{str(highest_tuple)}")
 
 
-def resilience_against_attacks(g: nx.Graph):
-    print("TODO")
+def resilience_against_targeted_attacks(g: nx.Graph):
+    copy = g.copy()
+    # initialize the vars
+    removed_nodes_count = 0
+
+    # repeat this until the graph is disconnected
+    # finds nodes with the lowest degree and removes neighbor nodes to disconnect them
+    while nx.is_connected(copy):
+        lowest_tuple = None
+        # find node with lowest degree
+        for entry in nx.degree(copy):
+            # entry[0] is the node, entry[1] its degree
+            if lowest_tuple is None:
+                lowest_tuple = entry
+            elif lowest_tuple[1] > entry[1]:
+                lowest_tuple = entry
+
+        # get first neighbor node
+        neighbor = next(nx.all_neighbors(copy, lowest_tuple[0]))
+        # now remove the node with the highest degree and increase the counter
+        print(f"removing node {neighbor}")  # for debugging
+        copy.remove_node(neighbor)
+        removed_nodes_count += 1
+
+    # add for the last removal
+    print(f"Resilience against targeted attack: {str(removed_nodes_count)} nodes removed until graph disconnect")
+
+
+def resilience_against_random_attacks(g: nx.Graph):
+    sum_removed_edges = 0
+    iterations = 100
+    # removes random edges until graph is disconnected
+    for i in range(iterations):
+        copy = g.copy()
+
+        removed_edges = 0
+        while nx.is_connected(copy):
+            # remove a random edge
+            edge = random_edge(copy)
+            copy.remove_edge(edge[0], edge[1])
+            removed_edges += 1
+            # print(f"removing edge {str(edge)}")
+
+        sum_removed_edges += removed_edges
+
+    # calculate average
+    avg = sum_removed_edges / iterations
+    print(f"Resilience against random attacks: removed {str(avg)} edges in average over {str(iterations)} iterations")
+
+
+# selects a random node
+def random_edge(g: nx.Graph):
+    edge_index = random.randrange(g.number_of_edges())
+    index = 0
+    for edge in g.edges:
+        if index == edge_index:
+            return edge
+        index += 1

@@ -36,7 +36,8 @@ def analyze_net(g: nx.Graph, name: str):
     functions.power_law_properties(g)
     functions.cohesiveness_distribution(g)
     functions.edge_persistence_greedy_attack(g)
-    functions.resilience_against_attacks(g)
+    functions.resilience_against_targeted_attacks(g)
+    functions.resilience_against_random_attacks(g)
 
     print(f"Done analyzing {name}")
 
@@ -94,7 +95,7 @@ def test_graph():
         (6, 7)
     ])
     g.add_edge(3, 8)
-    functions.cohesiveness_distribution(g)
+    functions.resilience_against_random_attacks(g)
     # analyze_net(g, "test")
 
 
