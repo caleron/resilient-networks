@@ -70,6 +70,7 @@ def cohesiveness_distribution(g: nx.Graph):
 
 def edge_persistence_greedy_attack(g: nx.Graph):
     copy = g.copy()
+    # initialize the vars
     removed_nodes_to_zero_degree_dict = dict()
     zero_degree_count = 0
     removed_nodes_count = 0
@@ -79,6 +80,8 @@ def edge_persistence_greedy_attack(g: nx.Graph):
         highest_tuple = None
         zero_degree_count = 0
         # find node with highest degree and count nodes with zero degree at the same time
+        # means zero_degree_count stores the number of isolated nodes after the last removal
+        # therefore save this before removing a new node and once after the while loop to get all values
         for entry in nx.degree(copy):
             # entry[0] is the node, entry[1] its degree
             if highest_tuple is None:
@@ -92,8 +95,9 @@ def edge_persistence_greedy_attack(g: nx.Graph):
         # store the current number of isolated nodes mapped to the removed nodes and total nodes
         removed_nodes_to_zero_degree_dict[removed_nodes_count] = zero_degree_count, copy.number_of_nodes()
         # now remove the node with the highest degree and increase the counter
+        # if highest_tuple[1] == 0, then the while loop stops
         if highest_tuple[1] > 0:
-            print(f"removing node {highest_tuple[0]}")
+            # print(f"removing node {highest_tuple[0]}")  # for debugging
             copy.remove_node(highest_tuple[0])
             removed_nodes_count += 1
 
