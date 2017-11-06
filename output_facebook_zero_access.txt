@@ -1,0 +1,48 @@
+C:\dev\Anaconda3Python\python.exe C:/Users/Patrick/PycharmProjects/rn-exercise-1/main.py
+Loading facebook
+Analyzing facebook
+Graph is connected: True
+Number of Nodes (Order):  168
+Number of Edges (Size): 1656
+Density 0.11804961505560307
+Average shortest path length: 2.4250784145993727
+clustering coefficient: 0.5337913395248176
+Diameter: 6
+Connectivity: 1
+removing node 757
+Resilience against targeted attack: 1 nodes removed until graph disconnect
+Resilience against random attacks: removed 171.9 edges in average over 100 iterations
+Done analyzing facebook
+loading zero access core min
+Analyzing zero access core min
+Graph is connected: True
+Number of Nodes (Order):  120
+Number of Edges (Size): 9776
+Density 1.369187675070028
+Average shortest path length: 1.1245098039215686
+clustering coefficient: 0.9265232299436047
+Diameter: 2
+Connectivity: 18
+removing node 3afe7a475d9e34d4d10970b185a90d70e1260446
+removing node 99e6ca314e3a80e3d07bd2f14733520960f1da25
+removing node a9b021e8ddaa790745d76a8558a86d4ce5c7562f
+removing node bd30613bfe4c3f6118e2a8a486fbaa59caedc528
+removing node d9fcb6fca34379bf1dd1d8ad37517e645fb286a4
+removing node d4b17b474fc639fc2d7e06d43b79db72f90987d4
+removing node 1c6e79989dd53fbcc3eecffbf2043c3be2ed1912
+removing node 24773597f761b515b651136697fe9c86ae45ce1d
+removing node 33095f1c5997950a70a84dc974560b7ac52b942c
+removing node 5ced3f6cdd611a398432381adfbcf55416ade756
+removing node a4684fa95e9f26103ef8cd6fa350de915475d20c
+removing node 3b0f99cc7441bfa719bfaacea9116a18bcdc913e
+removing node 2e54fde251207777f6209e9dc1e014b25c546cab
+removing node 32624131fa1c387afa3e0dd6350c90cbe12fffc9
+removing node 372669ecc24ed031382f73d9a479aad8344434bd
+removing node 507f628f09744d7a7371eb8492729170823d3158
+removing node d92542ab6f8a6142e42591697fdbd319fccec472
+removing node ab3b75a0933ecafa7252f42298ad6f9f684229ba
+Resilience against targeted attack: 18 nodes removed until graph disconnect
+Resilience against random attacks: removed 5866.6 edges in average over 100 iterations
+Done analyzing zero access core min
+
+Process finished with exit code 0

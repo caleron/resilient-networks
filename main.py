@@ -100,9 +100,11 @@ def test_graph():
     analyze_net(g, "test")
 
 
-test_graph()
-# facebook_0()
-# zero_access()
-# facebook_combined()
+# test_graph()
+facebook_0()
+zero_access()
+
+# too big
 # sality()
+# facebook_combined()
 # gnutella()
