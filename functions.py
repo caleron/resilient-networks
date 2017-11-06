@@ -19,11 +19,12 @@ def clustering_coefficient(g: nx.Graph):
 
 
 # https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.cluster.clustering.html
-def clustering_distribution(g: nx.Graph):
+def clustering_distribution(g: nx.Graph, name: str):
     # computes clustering coefficient for each node
     # result is a map: node -> coefficient
     clustering: dict = nx.clustering(g)
-    print(f"TODO clustering: {str(clustering)}")
+
+    draw_histogram(clustering.values(), f"Clustering coefficient distribution of {name}", "Clustering coefficient")
 
 
 # https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.average_shortest_path_length.html
@@ -58,34 +59,23 @@ def cohesiveness(g: nx.Graph, v):
     return before - after
 
 
-def power_law_properties(g: nx.Graph):
-    degree_sequence = sorted(nx.degree(g), reverse=True)
-    dmax = max(degree_sequence)
+def power_law_properties(g: nx.Graph, name: str):
+    degrees = []
+    for node_degree_pair in nx.degree(g):
+        degrees.append(node_degree_pair[1])
 
-    plt.loglog(degree_sequence)
-    plt.title("Degree plot")
-    plt.ylabel("Degree")
-    plt.xlabel("rank")
-
-    Gcc = sorted(nx.connected_component_subgraphs(g), key=len, reverse=True)[0]
-
-    pos = nx.spring_layout(Gcc)
-    plt.axis('off')
-    nx.draw_networkx_nodes(Gcc, pos, node_size=200)
-    nx.draw_networkx_edges(Gcc, pos, alpha=0.5)
-
-    plt.show()
+    draw_histogram(degrees, f"Degree distribution of {name}", "degree", bin_count=100)
 
 
-def cohesiveness_distribution(g: nx.Graph):
-    arr = dict()
+def cohesiveness_distribution(g: nx.Graph, name: str):
+    arr = []
     for node in g.nodes:
-        arr[node] = cohesiveness(g, node)
+        arr.append(cohesiveness(g, node))
 
-    print(f"Cohesiveness distribution: {str(arr)}")
+    draw_histogram(arr, f"Cohesiveness distribution of {name}", "Cohesiveness")
 
 
-def edge_persistence_greedy_attack(g: nx.Graph):
+def edge_persistence_greedy_attack(g: nx.Graph, name: str):
     copy = g.copy()
     # initialize the vars
     removed_nodes_to_zero_degree_dict = dict()
@@ -110,7 +100,7 @@ def edge_persistence_greedy_attack(g: nx.Graph):
                 zero_degree_count += 1
 
         # store the current number of isolated nodes mapped to the removed nodes and total nodes
-        removed_nodes_to_zero_degree_dict[removed_nodes_count] = zero_degree_count, copy.number_of_nodes()
+        removed_nodes_to_zero_degree_dict[removed_nodes_count] = zero_degree_count  # , copy.number_of_nodes()
         # now remove the node with the highest degree and increase the counter
         # if highest_tuple[1] == 0, then the while loop stops
         if highest_tuple[1] > 0:
@@ -119,8 +109,15 @@ def edge_persistence_greedy_attack(g: nx.Graph):
             removed_nodes_count += 1
 
     # add for the last removal
-    removed_nodes_to_zero_degree_dict[removed_nodes_count] = zero_degree_count, copy.number_of_nodes()
-    print(f"TODO{str(highest_tuple)}")
+    removed_nodes_to_zero_degree_dict[removed_nodes_count] = zero_degree_count  # , copy.number_of_nodes()
+
+    plt.plot(removed_nodes_to_zero_degree_dict.keys(), removed_nodes_to_zero_degree_dict.values())
+    plt.title("Edge persistence against greedy Attack")
+    plt.xlabel("Removed nodes count")
+    plt.ylabel("Isolated nodes count")
+
+    plt.savefig("output/edge_persistence_greedy_" + name + ".png")
+    plt.clf()
 
 
 def resilience_against_targeted_attacks(g: nx.Graph):
@@ -181,3 +178,18 @@ def random_edge(g: nx.Graph):
         if index == edge_index:
             return edge
         index += 1
+
+
+def draw_histogram(data, name, x_label, y_label="frequency", bin_count=None):
+    if bin_count is None:
+        plt.hist(data)
+    else:
+        plt.hist(data, bin_count)
+
+    # plt.plot(histogram_data.keys(), histogram_data.values())
+    plt.title(name)
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+
+    plt.savefig("output/" + name + ".png")
+    plt.clf()

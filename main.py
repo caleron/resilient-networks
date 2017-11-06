@@ -30,12 +30,12 @@ def analyze_net(g: nx.Graph, name: str):
     functions.basic_numbers(g)
     functions.average_shortest_path_length(g)
     functions.clustering_coefficient(g)
-    functions.clustering_distribution(g)
+    functions.clustering_distribution(g, name)
     functions.diameter(g)
     functions.connectivity(g)
-    functions.power_law_properties(g)
-    functions.cohesiveness_distribution(g)
-    functions.edge_persistence_greedy_attack(g)
+    functions.power_law_properties(g, name)
+    functions.cohesiveness_distribution(g, name)
+    functions.edge_persistence_greedy_attack(g, name)
     functions.resilience_against_targeted_attacks(g)
     functions.resilience_against_random_attacks(g)
 
@@ -95,8 +95,9 @@ def test_graph():
         (6, 7)
     ])
     g.add_edge(3, 8)
-    functions.resilience_against_random_attacks(g)
-    # analyze_net(g, "test")
+    # functions.resilience_against_random_attacks(g)
+    # functions.power_law_properties(g, "test")
+    analyze_net(g, "test")
 
 
 test_graph()
