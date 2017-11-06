@@ -180,6 +180,7 @@ def random_edge(g: nx.Graph):
         index += 1
 
 
+# https://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.hist
 def draw_histogram(data, name, x_label, y_label="frequency", bin_count=None):
     if bin_count is None:
         plt.hist(data)
