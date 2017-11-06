@@ -11,14 +11,14 @@ Diameter: 6
 Connectivity: 1
 removing node 757
 Resilience against targeted attack: 1 nodes removed until graph disconnect
-Resilience against random attacks: removed 171.9 edges in average over 100 iterations
+Resilience against random attacks: removed 147.9 edges in average over 100 iterations
 Done analyzing facebook
 loading zero access core min
 Analyzing zero access core min
 Graph is connected: True
 Number of Nodes (Order):  120
-Number of Edges (Size): 9776
-Density 1.369187675070028
+Number of Edges (Size): 6337
+Density 0.8875350140056022
 Average shortest path length: 1.1245098039215686
 clustering coefficient: 0.9265232299436047
 Diameter: 2
@@ -38,11 +38,11 @@ removing node 3b0f99cc7441bfa719bfaacea9116a18bcdc913e
 removing node 2e54fde251207777f6209e9dc1e014b25c546cab
 removing node 32624131fa1c387afa3e0dd6350c90cbe12fffc9
 removing node 372669ecc24ed031382f73d9a479aad8344434bd
+removing node ab3b75a0933ecafa7252f42298ad6f9f684229ba
 removing node 507f628f09744d7a7371eb8492729170823d3158
 removing node d92542ab6f8a6142e42591697fdbd319fccec472
-removing node ab3b75a0933ecafa7252f42298ad6f9f684229ba
 Resilience against targeted attack: 18 nodes removed until graph disconnect
-Resilience against random attacks: removed 5866.6 edges in average over 100 iterations
+Resilience against random attacks: removed 5760.78 edges in average over 100 iterations
 Done analyzing zero access core min
 
 Process finished with exit code 0

@@ -23,6 +23,7 @@ def analyze_net(g: nx.Graph, name: str):
     # https://networkx.github.io/documentation/stable/reference/classes/generated/networkx.Graph.to_undirected.html
     # undirected graphs are better analyzable
     g = nx.to_undirected(g)
+    g = nx.Graph(g)
 
     # https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.is_connected.html
     print(f"Graph is connected: {str(nx.is_connected(g))}")
